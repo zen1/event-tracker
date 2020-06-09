@@ -1,10 +1,9 @@
-class EventTracker {
+export class EventTracker {
   private _threshold: number;
-  private _events: number[];
+  private _events: number[] = [];
 
   constructor(threshold = 300) {
     this._threshold = threshold * 1000;
-    this._events = [];
   }
 
   // TODO: Fix test for below cleanup logic
@@ -17,7 +16,8 @@ class EventTracker {
   // }
 
   emit(): void {
-    this._events.push(Date.now());
+    const timestamp = Date.now();
+    this._events.push(timestamp);
   }
 
   getEventCount(seconds: number): number {
@@ -28,12 +28,13 @@ class EventTracker {
     const timespanInMilliseconds = seconds * 1000;
 
     if (timespanInMilliseconds > this._threshold) {
-      throw new Error('Cannot request events older than the threshold : Default is 5 minutes');
+      throw new Error(
+        'Cannot request events older than the threshold : Default is 5 minutes'
+      );
     }
 
     let millisecondsAgo = Date.now() - timespanInMilliseconds;
-    return this._events.filter(item => item > millisecondsAgo).length;
+    const filteredEvents = this._events.filter(item => item > millisecondsAgo);
+    return filteredEvents.length;
   }
 }
-
-export default EventTracker;
