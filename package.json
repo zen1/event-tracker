@@ -9,12 +9,14 @@
     "dev": "jest --watch",
     "tsc": "tsc",
     "ts-check": "tsc --noEmit",
+    "build": "npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "browserslist": "> 0.25%, not dead",
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.1",
