@@ -1,0 +1,32 @@
+name: Compile and Publish
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@zen1'
+
+      - name: Compile Code
+        run: |
+          npm ci
+          npm run tsc
+
+      - name: Publish Package
+        run: npm publish
