@@ -1,4 +1,4 @@
-import EventTracker from './event-tracker';
+import { EventTracker } from './index';
 
 const secondsToMs = (seconds: number): number => {
   return seconds * 1000;
@@ -21,6 +21,7 @@ describe('Event Tracker Class', () => {
     expect(tracker.getEventCount(60)).toBe(1);
     tracker.emit();
     expect(tracker.getEventCount(60)).toBe(2);
+    expect(tracker.getEventCount(60)).toBe(2)
   });
 
   it('should not allow requests for further back than the threshold', () => {

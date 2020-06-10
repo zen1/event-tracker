@@ -3,13 +3,16 @@
   "version": "0.0.2",
   "description": "",
   "main": "dist/index.js",
-  "types": "index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "dev": "jest --watch",
     "tsc": "tsc",
     "ts-check": "tsc --noEmit",
-    "build": "npm run build:js",
+    "build": "rimraf dist && npm run build:js && npm run build:types",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline"
   },
@@ -25,7 +28,9 @@
     "@babel/preset-typescript": "^7.10.1",
     "@types/jest": "^25.2.3",
     "jest": "^26.0.1",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.3"
-  }
+  },
+  "dependencies": {}
 }
