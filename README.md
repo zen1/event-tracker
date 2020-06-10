@@ -58,9 +58,9 @@ tracker and instantiate it in your code.
 
 The default threshold for the tracker is 5 minutes, but you can instantiate the
 tracker with a different value (in seconds) to modify the threshold for your
-needs.
+needs.  This threshold sets a limit on the length of time from which events can be retrieved.
 
-Example:
+**Example:**
 
 ```js
 import { EventTracker } from '@zen1/event-tracker';
@@ -77,8 +77,8 @@ const tenMinuteTracker = new EventTracker(600);
 > The tracker has two available methods. One for emitting events, and another
 > for getting the current count of events.
 
-- **emit()** Calling the emit function will add the current timestamp to the
-  tracker. It uses the javascript Date.now() behind the scenes to get the
+- **emit()** Calling the emit function will add a new timestamp to the
+  trackers event storage. It uses the javascript Date.now() behind the scenes to get the
   timestamp
 
 ```js
@@ -87,9 +87,11 @@ const tracker = new EventTracker();
 tracker.emit();
 ```
 
-- **getEventCount( seconds )** To get the number of emitted events over a set
-  time period, you have to pass the number of seconds back that you want event
-  tracker to filter for. Example:
+- **getEventCount(seconds)** To get the number of emitted events over a set
+  time period (e.g. 2 minutes ago until now), you must pass a number of seconds in as an argument.
+  The function will return a count of all events that have ocurred since the specified number of seconds ago.
+  
+**Example:**
 
 ```js
 const tracker = new EventTracker();
