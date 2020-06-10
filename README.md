@@ -2,7 +2,7 @@
 
 [![Test](https://github.com/zen1/event-tracker/workflows/Test/badge.svg)](https://github.com/zen1/event-tracker/actions)
 
-## A simple library for tracking and counting events
+A simple library for tracking and counting events
 
 ### Installation
 
