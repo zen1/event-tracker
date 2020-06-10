@@ -2,18 +2,9 @@ export class EventTracker {
   private _threshold: number;
   private _events: number[] = [];
 
-  constructor(threshold = 300) {
+  constructor(threshold: number = 300) {
     this._threshold = threshold * 1000;
   }
-
-  // TODO: Fix test for below cleanup logic
-  // private cleanup(): void {
-  //   const thresholdLimit: number = Date.now() - this._threshold;
-  //   console.log("LIMIT: ", thresholdLimit)
-  //   const newEvents: number[] = this._events.filter(item => item > thresholdLimit);
-  //   console.log("NEW EVENTS: ", newEvents)
-  //   this._events = [...newEvents];
-  // }
 
   emit(): void {
     const timestamp = Date.now();

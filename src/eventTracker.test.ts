@@ -21,8 +21,15 @@ describe('Event Tracker Class', () => {
     expect(tracker.getEventCount(60)).toBe(1);
     tracker.emit();
     expect(tracker.getEventCount(60)).toBe(2);
-    expect(tracker.getEventCount(60)).toBe(2)
   });
+
+  it('should return the same value when getEventCount is called multiple times in a row', () => {
+    const tracker = new EventTracker();
+    tracker.emit();
+    tracker.emit();
+    expect(tracker.getEventCount(60)).toBe(2)
+    expect(tracker.getEventCount(60)).toBe(2)
+  })
 
   it('should not allow requests for further back than the threshold', () => {
     const tracker = new EventTracker();
@@ -65,27 +72,4 @@ describe('Event Tracker Class', () => {
 
     expect(tracker.getEventCount(60)).toBe(1000000);
   }, 10); // Added 10ms timeout to make sure that the test completes within a short period of time
-
-  // it('should clean up requests older than the provided threshold on emit()', () => {
-  //   const thresholdOne = 300;
-  //   const thresholdTwo = 500;
-  //   const oldValue = Date.parse('2020-01-07');
-  //   console.log("OLD VALUE: ", oldValue)
-
-  //   const trackerOne = new EventTracker(thresholdOne);
-  //   const trackerTwo = new EventTracker(thresholdTwo);
-
-  //   //@ts-ignore
-  //   trackerOne._events = new Array(10).fill(oldValue);
-  //   expect(trackerOne.getEventCount(300)).toBe(10);
-
-  //   // @ts-ignore
-  //   trackerTwo._events = new Array(10).fill(oldValue);
-  //   expect(trackerTwo.getEventCount(500)).toBe(10);
-
-  //   trackerOne.emit();
-  //   trackerTwo.emit();
-
-  //   expect(trackerOne.getEventCount(300)).toBe(1);
-  // });
 });
